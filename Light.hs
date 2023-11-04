@@ -113,7 +113,7 @@ magic (hr, mn, dy, mt)
 --TODO: floating point
 average :: [Int] -> Int
 average xs
-    = (sumList xs) `div` (length xs)
+    = (sumList xs) `div` 2
     
 -- finds clock displays that fit the requirements
 tester1 :: (Int, Int, Int, Int) -> Bool
