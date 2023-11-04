@@ -47,32 +47,24 @@ factorisable x y
 -- increments mn component
 incMin :: (Int, Int, Int, Int) -> (Int, Int, Int, Int)
 incMin (hr, mn, dy, mt)
-    | mn /= 59 = (hr, x, dy, mt)
+    | mn /= 59 = (hr, mn + 1, dy, mt)
     | otherwise = incHour (hr, 0, dy, mt)
-    where
-        x = mn + 1
 
 -- increments hr component
 incHour :: (Int, Int, Int, Int) -> (Int, Int, Int, Int)
 incHour (hr, mn, dy, mt)
-    | hr /= 23 = (x, mn, dy, mt)
+    | hr /= 23 = (hr + 1, mn, dy, mt)
     | otherwise = incDay (0, mn, dy, mt)
-    where
-        x = hr + 1
 
 -- incremements dy component
 incDay :: (Int, Int, Int, Int) -> (Int, Int, Int, Int)
 incDay (hr, mn, dy, mt)
-    = (hr, mn, x, mt)
-    where
-        x = dy + 1
+    = (hr, mn, dy + 1, mt)
 
 -- incremements mt component
 incMonth :: (Int, Int, Int, Int) -> (Int, Int, Int, Int)
 incMonth (hr, mn, dy, mt)
-    = (hr, mn, dy, x) 
-    where
-        x = mt + 1
+    = (hr, mn, dy, mt + 1)
 
 -- generates list of segment values of each digit
 litSegments :: [Int] -> [Int]
@@ -128,9 +120,6 @@ tester1 :: (Int, Int, Int, Int) -> Bool
 tester1 (hr, mn, dy, mt)
     = magic (hr, mn, dy, mt)
     && magic (nextDay)
-    && numLitSegments (nextDayMin) == average [x, y]
+    && numLitSegments (incMin nextDay) == average [numLitSegments (hr, mn, dy, mt), numLitSegments (nextDay)]
     where
         nextDay = incDay (hr, mn, dy, mt)
-        nextDayMin = incMin (incDay (hr, mn, dy, mt))
-        x = numLitSegments (hr, mn, dy, mt)
-        y = numLitSegments (incDay (hr, mn, dy, mt))
