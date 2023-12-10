@@ -77,7 +77,7 @@ litSegments (x:xs)
     | x == 4 = 4 : litSegments xs
     | x == 7 = 3 : litSegments xs
     | x == 8 = 7 : litSegments xs
-    
+     
 -- sums up a list of ints
 sumList :: [Int] -> Int
 sumList []
