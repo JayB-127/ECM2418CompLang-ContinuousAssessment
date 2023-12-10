@@ -124,6 +124,7 @@ tester1 (hr, mn, dy, mt)
     where
         nextDay = incDay (hr, mn, dy, mt)
         
+-- generator1 test func
 x_generator1 :: Int
 x_generator1 =
     length [ t | t <- ts , t `elem` g ]
@@ -141,7 +142,8 @@ x_generator1 =
             , (20 ,22 ,29 ,10)
             , (22 ,38 ,11 , 9)
             ]
-        
+
+-- tester1 test func     
 x_tester1 :: Int
 x_tester1 =
     length [ t | t <- ts , tester1 t ]
