@@ -123,3 +123,38 @@ tester1 (hr, mn, dy, mt)
     && numLitSegments (incMin nextDay) == average [numLitSegments (hr, mn, dy, mt), numLitSegments (nextDay)]
     where
         nextDay = incDay (hr, mn, dy, mt)
+        
+x_generator1 :: Int
+x_generator1 =
+    length [ t | t <- ts , t `elem` g ]
+    where
+        g = generator1
+        ts =
+            [ ( 2 ,15 ,14 ,11)
+            , ( 4 ,31 ,27 , 9)
+            , ( 6 ,47 ,10 , 8)
+            , ( 9 , 3 ,23 , 6)
+            , (11 ,19 , 6 , 5)
+            , (13 ,35 ,19 , 3)
+            , (15 ,51 , 2 , 2)
+            , (18 , 6 ,16 ,12)
+            , (20 ,22 ,29 ,10)
+            , (22 ,38 ,11 , 9)
+            ]
+        
+x_tester1 :: Int
+x_tester1 =
+    length [ t | t <- ts , tester1 t ]
+    where
+        ts =
+            [ ( 6 ,59 ,17 ,24)
+            , ( 6 ,59 ,17 ,34)
+            , ( 6 ,59 ,27 ,14)
+            , ( 6 ,59 ,27 ,41)
+            , ( 8 ,59 ,12 ,46)
+            , (16 ,59 , 7 ,24)
+            , (16 ,59 , 7 ,42)
+            , (16 ,59 , 7 ,43)
+            , (16 ,59 ,27 ,40)
+            , (18 ,59 , 2, 46)
+            ]
