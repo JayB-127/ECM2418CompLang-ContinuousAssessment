@@ -1,14 +1,19 @@
 main :-
     generator3(_).
 
+% generates perfect squares from 1000 to 1000000
 generator3(X) :-
     between(1000, 1000000, X),
     square(X).
 
+% checks if a number is a perfect square
 square(X) :-
     floor(sqrt(X))^2 =:= X.
 
-%
+
+
+
+% generator3 test func
 x_generator3(N) :-
     x_generator3_loop(
         [1024, 9409, 23716, 51529
