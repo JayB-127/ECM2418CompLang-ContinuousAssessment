@@ -52,7 +52,7 @@ tester2 (n1, n2, n3, n4, n5)
     && (read) n3 - (read n4) == (read n5)
     && sum(map read [n1, n3, n5]) < 2000
     
--- generator1 test func
+-- generator2 test func
 x_generator2 :: Int
 x_generator2 =
     length [ t | t <- ts , t `elem` g ]
@@ -70,6 +70,8 @@ x_generator2 =
             , ("879","79","897","98","789")
             , ("987","79","789","79","789")
             ]
+
+-- tester2 test func
 x_tester2 :: Int
 x_tester2 =
     length [ t | t <- ts , tester2 t ]
