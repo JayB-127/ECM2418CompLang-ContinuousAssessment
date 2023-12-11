@@ -11,8 +11,11 @@ tester3(X) :-
     toDigits(X, XS),
     unique(XS),
     lastElem(XS, E),
-    listLength(XS, N),
-    E == N.
+    listLength(XS, N1),
+    E == N1,
+    secondLastElem(XS, N2),
+    isOdd(N2),
+    member(0, XS).
 
 % checks if a number is a perfect square
 square(X) :-
@@ -49,6 +52,20 @@ listLength([_|XS], N) :-
 lastElem([X], X).
 lastElem([_|X], Y) :-
     last(X, Y).
+
+% finds second to last element of list
+secondLastElem([X,_], X).
+secondLastElem([_|XS], X) :-
+    secondLastElem(XS, X).
+
+% checks if int is odd
+isOdd(X) :-
+    \+ (0 is X mod 2).
+
+% checks element is in list
+member(X, [X|_]).
+member(X, [_|XS]) :-
+    member(X, XS).
 
 % generator3 test func
 x_generator3(N) :-
