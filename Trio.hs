@@ -2,7 +2,7 @@ import Data.List
 
 main :: IO()
 main
-    = print(generator2)
+    = print(x_generator2)
 
 -- generates all possible numbers (N1 to N5)
 generator2 :: [(String, String, String, String, String)]
@@ -11,7 +11,6 @@ generator2
     | n1 <- map show [123..987], noDups(toDigits(read n1)), noZero(n1)
     , n3 <- permutations n1, noDups(toDigits(read n3))
     , n5 <-  permutations n1, noDups(toDigits(read n5))
-    , sum(map read [n1, n3, n5]) < 2000
     , n2 <- map show [12..98], digitsIn n1 n2, noDups(toDigits(read n2))
     , n4 <- map show [12..98], digitsIn n1 n4, noDups(toDigits(read n4))
     , notFirstDigits n1 n2
@@ -46,5 +45,20 @@ notFirstDigits :: String -> String -> Bool
 notFirstDigits xs ys
     = not (head xs == head ys)
     
-    
-    
+x_generator2 :: Int
+x_generator2 =
+    length [ t | t <- ts , t `elem` g ]
+    where
+        g = generator2
+        ts =
+            [ ("123","21","123","12","123")
+            , ("162","26","261","12","621")
+            , ("219","19","912","21","291")
+            , ("329","92","932","32","239")
+            , ("439","94","394","43","394")
+            , ("549","95","945","95","945")
+            , ("568","68","586","56","586")
+            , ("769","67","679","97","796")
+            , ("879","79","897","98","789")
+            , ("987","79","789","79","789")
+            ]
