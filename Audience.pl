@@ -73,7 +73,7 @@ member(X, [X|_]).
 member(X, [_|XS]) :-
     member(X, XS).
 
-% checks int is multiple of another
+% checks int is multiple of another (treating 0 as not a multiple)
 multiple(X, Y) :-
     \+ X is 0,
     0 is X mod Y.
