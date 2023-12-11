@@ -68,11 +68,6 @@ secondLastElem([_|XS], X) :-
 isOdd(X) :-
     \+ (0 is X mod 2).
 
-% checks element is in list
-member(X, [X|_]).
-member(X, [_|XS]) :-
-    member(X, XS).
-
 % checks int is multiple of another (treating 0 as not a multiple)
 multiple(X, Y) :-
     \+ X is 0,
@@ -112,4 +107,3 @@ x_tester3_loop([T|TS], C, N) :-
 x_tester3_loop(TS, C1, N).
 x_tester3_loop([_|TS], C, N) :-
     x_tester3_loop(TS, C, N).
-
