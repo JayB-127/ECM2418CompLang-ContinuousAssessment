@@ -10,8 +10,32 @@ generator3(X) :-
 square(X) :-
     floor(sqrt(X))^2 =:= X.
 
+% converts int to list of digits
+toDigits(X, [X]) :-
+    X < 10.
+toDigits(X, [XS]) :-
+    X >= 10,
+    div_mod(X, 10, D, M),
+    digits(D, R),
+    append(R, [M], XS).
 
+% divides and mods two numbers
+div_mod(A, B, D, M) :-
+    D is A div B,
+    M is A mod B.
 
+% checks a list of int is unique
+unique(XS) :-
+    sort(XS, S),
+    listLength(XS, Y),
+    listLength(S, Z),
+    Y == Z.
+
+% finds length of list
+listLength([], 0).
+listLength([_|XS], N) :-
+    listLength(XS, N1),
+    N is N1 + 1.
 
 % generator3 test func
 x_generator3(N) :-
