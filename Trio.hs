@@ -9,8 +9,8 @@ generator2 :: [(String, String, String, String, String)]
 generator2
     = [(n1, n2, n3, n4, n5)
     | n1 <- map show [123..987], noDups(toDigits(read n1)), noZero(n1)
-    , n3 <- permutations n1, noDups(toDigits(read n3))
-    , n5 <-  permutations n1, noDups(toDigits(read n5))
+    , n3 <- permutations n1
+    , n5 <-  permutations n1
     , n2 <- map show [12..98], digitsIn n1 n2, noDups(toDigits(read n2))
     , n4 <- map show [12..98], digitsIn n1 n4, noDups(toDigits(read n4))
     , notFirstDigits n1 n2
