@@ -106,6 +106,9 @@ x_tester3(N) :-
 
 x_tester3_loop([], C, C).
 x_tester3_loop([T|TS], C, N) :-
-tester3(T),
-C1 is C + 1,
+    tester3(T),
+    C1 is C + 1,
 x_tester3_loop(TS, C1, N).
+x_tester3_loop([_|TS], C, N) :-
+    x_tester3_loop(TS, C, N).
+
