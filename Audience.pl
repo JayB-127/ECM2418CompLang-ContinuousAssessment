@@ -96,3 +96,16 @@ x_generator3_loop([T|TS], C, N) :-
     x_generator3_loop(TS, C1, N).
 x_generator3_loop([_|TS], C, N) :-
     x_generator3_loop(TS, C, N).
+
+% tester3 test func
+x_tester3(N) :-
+    x_tester3_loop(
+        [ 123056, 128036, 139076, 142076
+        , 148056, 159076, 173096, 189036
+        , 193056, 198076], 0, N).
+
+x_tester3_loop([], C, C).
+x_tester3_loop([T|TS], C, N) :-
+tester3(T),
+C1 is C + 1,
+x_tester3_loop(TS, C1, N).
