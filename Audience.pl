@@ -75,6 +75,7 @@ member(X, [_|XS]) :-
 
 % checks int is multiple of another
 multiple(X, Y) :-
+    \+ X is 0,
     0 is X mod Y.
              
 % finds first, second and third element of list, respectively
