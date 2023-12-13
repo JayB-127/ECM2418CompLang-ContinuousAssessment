@@ -8,7 +8,7 @@ generator4(X) :-
     unique(L),
     insertList(L, [], X).
 
-
+% predicate that uses recurrence to add new prime list until length list is 10
 
 divisible(X, Y) :-
     0 is X mod Y.
