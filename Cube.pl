@@ -1,5 +1,5 @@
 main :-
-    generator4(X), write(X).
+    generator4(X), tester4(X), write(X).
 
 generator4(XS) :-
     between(0, 999, P),
@@ -73,6 +73,28 @@ unique(X) :-
 % inserts list into list
 insertList(E, [], [E]).
 insertList(E, [X|XS], [E, X|XS]).
+
+x_generator4(N) :-
+    x_generator4_loop(
+        [[[9 ,6 ,7] ,[4 ,0 ,1] ,[2 ,8 ,3] ,[5]]
+        ,[[9 ,8 ,3] ,[6 ,0 ,1] ,[5] ,[4 ,7] ,[2]]
+        ,[[9 ,8 ,3] ,[6 ,7] ,[4 ,2 ,0 ,1] ,[5]]
+        ,[[9 ,8 ,5 ,1] ,[2] ,[4 ,3] ,[6 ,0 ,7]]
+        ,[[9 ,8 ,5 ,1] ,[2] ,[3] ,[6 ,0 ,4 ,7]]
+        ,[[9 ,8 ,5 ,1] ,[2] ,[7] ,[4 ,6 ,0 ,3]]
+        ,[[8 ,9] ,[7] ,[6 ,0 ,1] ,[2 ,5 ,4 ,3]]
+        ,[[8 ,9] ,[7] ,[5 ,6 ,3] ,[4 ,0 ,2 ,1]]
+        ,[[8 ,9] ,[5] ,[4 ,7] ,[6 ,0 ,1] ,[3] ,[2]]
+        ,[[3] ,[5] ,[6 ,0 ,7] ,[2] ,[4 ,1] ,[8 ,9]]], 0, N).
+
+x_generator4_loop([], C, C).
+x_generator4_loop([T|TS], C, N) :-
+    generator4(T),
+    C1 is C + 1,
+x_generator4_loop(TS, C1, N).
+x_generator4_loop([_|TS], C, N) :-
+x_generator4_loop(TS, C, N).
+
 
 
 
