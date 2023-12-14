@@ -1,27 +1,29 @@
 main :-
-    generator4(X), tester4(X), write(X).
+    generator4(X), write(X).
 
-% generator: check N is a valid set of prime runs of the right length, using digits 0 to 9
-
-
-generator4(LS) :-
-    primes(P),
-    insert(P, [], LS).
-
-insert(E, [], [E]).
-insert(E, L, [[E], L]) :-
-    listLength(L, W),
-    W =< 10.
-insert(_, L, L) :-
-    listLength(L, W),
-    W > 10,
-    !.
-
-primes(P) :-
-    between(1, 9999, P),
+generator4(XS) :-
+    between(0, 999, P),
     prime(P),
-    unique(P).
+    toDigits(P, L),
+    unique(L),
+    insertList(L, [], LS),
+    insertLoop(L, LS, XS).
+           
+primes(P) :-
+	between(0, 999, P),
+    prime(P),
+    toDigits(P, L),
+    unique(L).
 
+insertLoop(_, L, L) :-
+    listLength(L, W),
+    W >= 10.
+insertLoop(E, L, LS) :-
+    listLength(L, W),
+    W < 10,
+    insertList(E, L, XS),
+    insertLoop(E, XS, LS).
+    
 
 % checks if number is divisible by another
 divisible(X, Y) :-
@@ -35,7 +37,7 @@ prime(2) :-
     true.
 prime(X) :-
     \+ (divisible(X, 2)).
-
+    
 % converts int to list of digits
 toDigits(X, [X]) :-
     X < 10.
@@ -67,13 +69,9 @@ listLength([_|XS], N) :-
 
 % checks if a list contains duplicates
 unique(X) :-
-    toDigits(X, L),
-    nub(L, Y),
-    listLength(Y) == listLength(L).
+    nub(X, Y),
+    listLength(Y) == listLength(X).
 
 % inserts list into list
 insertList(E, [], [E]).
 insertList(E, [X|XS], [E, X|XS]).
-
-
-
