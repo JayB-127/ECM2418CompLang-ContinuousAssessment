@@ -1,14 +1,22 @@
 main :-
     generator4(X), tester4(X), write(X).
 
-generator4(X) :-
+generator4(LS) :-
+	primeList([], LS).
+
+% predicate that uses recurrence to add new prime list until length list is 10
+
+primeList(LS, LS) :-
+    listLength(LS, Y),
+    Y >= 10.
+primeList(XS, YS) :-
     between(1, 9999, P),
     prime(P),
     toDigits(P, L),
     unique(L),
-    insertList(L, [], X).
+    insertList(L, XS, LS),
+    primeList(LS, YS).
 
-% predicate that uses recurrence to add new prime list until length list is 10
 
 divisible(X, Y) :-
     0 is X mod Y.
