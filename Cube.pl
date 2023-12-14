@@ -6,13 +6,7 @@ generator4(XS) :-
     prime(P),
     toDigits(P, L),
     unique(L),
-    insertLoop(L, [], XS).
-           
-primes(P) :-
-	between(0, 999, P),
-    prime(P),
-    toDigits(P, L),
-    unique(L).
+    insertLoop(L, [], XS). % TODO: insert unqiue digit primes into rest of list
 
 insertLoop(_, L, L) :-
     listLength(L, W),
@@ -20,7 +14,7 @@ insertLoop(_, L, L) :-
 insertLoop(E, L, LS) :-
     listLength(L, W),
     W < 10,
-    insertList(E, L, XS),
+    insertList(E, L, XS), % instead of inserting L everytime, need to insert unique digit primes
     insertLoop(E, XS, LS).
     
 % checks if number is divisible by another
@@ -94,8 +88,6 @@ x_generator4_loop([T|TS], C, N) :-
 x_generator4_loop(TS, C1, N).
 x_generator4_loop([_|TS], C, N) :-
 x_generator4_loop(TS, C, N).
-
-
 
 
 tester4(X) :-
