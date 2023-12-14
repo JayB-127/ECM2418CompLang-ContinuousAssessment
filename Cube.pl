@@ -23,7 +23,6 @@ insertLoop(E, L, LS) :-
     insertList(E, L, XS),
     insertLoop(E, XS, LS).
     
-
 % checks if number is divisible by another
 divisible(X, Y) :-
     0 is X mod Y.
@@ -74,3 +73,66 @@ unique(X) :-
 % inserts list into list
 insertList(E, [], [E]).
 insertList(E, [X|XS], [E, X|XS]).
+
+
+
+tester4(X) :-
+    traverseList(X, XS),
+    sort(XS, [], S),
+    removeFirst(S, E),
+    reverseList(E, _).
+    % check if remaining digits can create set of cubes
+
+listToNum(L, N) :-
+    listToNum(L, 0, N).
+listToNum([], A, A).
+listToNum([H|T], A, N) :-
+    B is 10*A + H,
+    listToNum(T, B, N).
+
+traverseList([], []).
+traverseList([L|LS], [X|XS]) :-
+    listToNum(L, X),
+    traverseList(LS, XS).
+
+sort([],A,A).
+sort([H|T],A,Sorted):-
+    insert(H,A,NA),
+    sort(T,NA,Sorted).
+   
+insert(X,[Y|YS],[Y|NT]):-
+    X>Y,
+    insert(X,YS,NT).
+insert(X,[Y|YS],[X,Y|YS]):-
+    X=<Y.
+insert(X,[],[X]).
+
+removeFirst([], []).
+removeFirst([_], []).
+removeFirst([_|XS], XS).
+
+reverseList([], []).
+reverseList([X|XS], W) :-
+    reverseList(XS, V),
+    append(V, [X], W).
+
+x_tester4(N) :-
+    x_tester4_loop(
+        [[[8 ,2 ,7] ,[6 ,1] ,[5 ,3] ,[4 ,0 ,9]]
+        ,[[8 ,2 ,7] ,[6 ,1] ,[4 ,0 ,9] ,[5 ,3]]
+        ,[[8 ,2 ,7] ,[5 ,3] ,[6 ,1] ,[4 ,0 ,9]]
+        ,[[8 ,2 ,7] ,[4 ,0 ,9] ,[6 ,1] ,[5 ,3]]
+        ,[[6 ,1] ,[8 ,2 ,7] ,[4 ,0 ,9] ,[5 ,3]]
+        ,[[6 ,1] ,[4 ,0 ,9] ,[5 ,3] ,[8 ,2 ,7]]
+        ,[[5 ,3] ,[6 ,1] ,[4 ,0 ,9] ,[8 ,2 ,7]]
+        ,[[5 ,3] ,[4 ,0 ,9] ,[6 ,1] ,[8 ,2 ,7]]
+        ,[[4 ,0 ,9] ,[5 ,3] ,[8 ,2 ,7] ,[6 ,1]]
+        ,[[4 ,0 ,9] ,[8 ,2 ,7] ,[6 ,1] ,[5 ,3]]], 0, N).
+
+x_tester4_loop([], C, C).
+x_tester4_loop([T|TS], C, N):- 
+    tester4(T),
+    C1 is C + 1,
+x_tester4_loop(TS, C1, N).
+x_tester4_loop([_|TS], C, N) :-
+x_tester4_loop(TS, C, N).
