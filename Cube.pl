@@ -6,8 +6,7 @@ generator4(XS) :-
     prime(P),
     toDigits(P, L),
     unique(L),
-    insertList(L, [], LS),
-    insertLoop(L, LS, XS).
+    insertLoop(L, [], XS).
            
 primes(P) :-
 	between(0, 999, P),
